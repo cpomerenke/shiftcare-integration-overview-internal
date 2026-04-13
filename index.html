@@ -1,1 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integration Journey Decider — ShiftCare × Employment Hero</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root,
+    [data-theme="dark"] {
+      --eh-purple:  #7622d7;
+      --eh-deep:    #2d0649;
+      --eh-dark:    #121214;
+      --eh-purple2: #a569ff;
+      --eh-purple3: #460078;
+      --eh-lilac1:  #bb8eff;
+      --eh-lilac2:  #d2b4ff;
+      --eh-lilac3:  #e9d9ff;
+      --eh-lime:    #bafc58;
+      --eh-cyan:    #40d1ff;
+      --sc:         #00b5a5;
+      --sc-mid:     #00d4c1;
+      --sc-dark:    #007a6e;
+      --bg:           #121214;
+      --surface:      #1c1a24;
+      --surface2:     #231f30;
+      --surface3:     rgba(255,255,255,0.03);
+      --border:       rgba(255,255,255,0.10);
+      --border2:      rgba(118,34,215,0.35);
+      --text:         #fdfbff;
+      --text2:        rgba(253,251,255,0.65);
+      --muted:        rgba(253,251,255,0.45);
+      --shadow:       0 4px 24px rgba(0,0,0,0.45);
+      --topbar-bg:    linear-gradient(135deg, #1a0035 0%, #2d0649 50%, #1a0035 100%);
+      --topbar-border:rgba(118,34,215,0.4);
+      --topbar-glow:  radial-gradient(ellipse 600px 120px at 30% 50%, rgba(165,105,255,0.1) 0%, transparent 70%);
+      --topbar-sep:   rgba(165,105,255,0.45);
+      --topbar-label: rgba(165,105,255,0.55);
+      --hero-h1:      var(--eh-lime);
+      --hero-eyebrow: var(--eh-lime);
+      --hero-substrong: var(--eh-lilac1);
+      --body-glow: radial-gradient(ellipse 900px 600px at 20% 10%, rgba(118,34,215,0.16) 0%, transparent 65%),
+                   radial-gradient(ellipse 600px 400px at 80% 90%, rgba(70,0,120,0.12) 0%, transparent 60%);
+      --banner-bg:    linear-gradient(135deg, #001a18 0%, #003d38 50%, #00211e 100%);
+      --banner-border:rgba(0,181,165,0.5);
+      --banner-name:  var(--eh-lime);
+      --banner-text:  rgba(253,251,255,0.75);
+      --banner-badge-bg: rgba(186,252,88,0.15);
+      --banner-badge-border: rgba(186,252,88,0.4);
+      --banner-badge-color: var(--eh-lime);
+      --banner-dot:   var(--eh-lime);
+      --native-bg:    rgba(0,181,165,0.08);
+      --native-border:rgba(0,181,165,0.35);
+      --native-color: #00d4c1;
+      --section-hdr:  var(--eh-lime);
+      --eh-head-bg:   linear-gradient(135deg, #1a0035, #460078);
+      --sc-head-bg:   linear-gradient(135deg, #003d38, #007a6e);
+      --eh-lbl-bg:    rgba(118,34,215,0.18);
+      --eh-lbl-color: var(--eh-lilac1);
+      --eh-lbl-border:rgba(118,34,215,0.35);
+      --sc-lbl-bg:    rgba(0,181,165,0.15);
+      --sc-lbl-color: #00d4c1;
+      --sc-lbl-border:rgba(0,181,165,0.3);
+      --flow-item-color: rgba(253,251,255,0.65);
+      --flow-item-bullet: var(--eh-lilac2);
+      --flow-item-bullet-sc: #00d4c1;
+      --flow-divider: rgba(255,255,255,0.07);
+      --callout-bg:   rgba(118,34,215,0.1);
+      --callout-border:rgba(118,34,215,0.25);
+      --callout-color:var(--eh-lilac2);
+      --callout-sc-bg: rgba(0,181,165,0.1);
+      --callout-sc-border: rgba(0,181,165,0.25);
+      --callout-sc-color: #00d4c1;
+      --via-bg:       rgba(0,181,165,0.15);
+      --via-border:   rgba(0,181,165,0.4);
+      --via-color:    #00d4c1;
+      --arrow-divider:rgba(255,255,255,0.07);
+      --arrow-lbl:    rgba(253,251,255,0.35);
+      --arrow-r-color:#bafc58;
+      --arrow-l-color:#00d4c1;
+      --bidir-label:  rgba(253,251,255,0.35);
+      --bidir-pill-bg:rgba(0,181,165,0.15);
+      --bidir-pill-border:rgba(0,181,165,0.3);
+      --bidir-pill-color:#00d4c1;
+      --arc-color:    #bafc58;
+      --th-color:     rgba(253,251,255,0.3);
+      --td-row-hover: rgba(118,34,215,0.05);
+      --td-divider:   rgba(255,255,255,0.04);
+      --td-first:     var(--eh-lilac1);
+      --boundary-color:rgba(253,251,255,0.3);
+      --badge-sc-bg:  rgba(0,181,165,0.15);
+      --badge-sc-color:#00d4c1;
+      --badge-sc-border:rgba(0,181,165,0.3);
+      --badge-eh-bg:   rgba(118,34,215,0.15);
+      --badge-eh-color:var(--eh-lilac1);
+      --badge-eh-border:rgba(118,34,215,0.3);
+      --badge-bi-bg:   rgba(186,252,88,0.1);
+      --badge-bi-color:var(--eh-lime);
+      --badge-bi-border:rgba(186,252,88,0.3);
+      --badge-bnd-bg:  rgba(255,255,255,0.05);
+      --badge-bnd-color:rgba(253,251,255,0.3);
+      --badge-bnd-border:rgba(255,255,255,0.1);
+      --pill-native-bg:  rgba(0,181,165,0.1);
+      --pill-native-color:#00d4c1;
+      --pill-native-border:rgba(0,181,165,0.3);
+      --pill-native-dot: #00d4c1;
+      --note-title:   var(--eh-lilac1);
+      --btn-show-bg:  var(--eh-lime);
+      --btn-show-color:#121214;
+      --btn-show-shadow:rgba(186,252,88,0.3);
+      --btn-show-hover:#d4ff7a;
+      --btn-reset-border:rgba(255,255,255,0.15);
+      --btn-reset-color:var(--muted);
+      --card-selected-eh-bg: linear-gradient(145deg, rgba(118,34,215,0.15), rgba(45,6,73,0.3));
+      --card-selected-eh-shadow: 0 0 0 1px #7622d7, 0 8px 32px rgba(118,34,215,0.3);
+      --card-selected-sc-bg: linear-gradient(145deg, rgba(0,181,165,0.2), rgba(0,181,165,0.1));
+      --card-selected-sc-shadow: 0 0 0 1px #00b5a5, 0 8px 32px rgba(0,181,165,0.25);
+      --p-name-color: #fdfbff;
+      --locked-badge-color: rgba(253,251,255,0.3);
+      --locked-badge-bg:   rgba(255,255,255,0.05);
+      --locked-badge-border:rgba(255,255,255,0.1);
+      --p-icon-eh-bg:  rgba(118,34,215,0.2);
+      --p-icon-eh-border:rgba(118,34,215,0.35);
+      --p-icon-sc-bg:  rgba(0,181,165,0.15);
+      --p-icon-sc-border:rgba(0,181,165,0.35);
+    }
+
+    [data-theme="light"] {
+      --bg:           #f4f0fa;
+      --surface:      #ffffff;
+      --surface2:     #f0ebff;
+      --surface3:     rgba(118,34,215,0.03);
+      --border:       rgba(118,34,215,0.15);
+      --border2:      rgba(118,34,215,0.3);
+      --text:         #18103a;
+      --text2:        rgba(24,16,58,0.75);
+      --muted:        rgba(24,16,58,0.5);
+      --shadow:       0 4px 24px rgba(118,34,215,0.08);
+      --topbar-bg:    linear-gradient(135deg, #1a0035 0%, #2d0649 50%, #1a0035 100%);
+      --topbar-border:rgba(118,34,215,0.4);
+      --topbar-glow:  radial-gradient(ellipse 600px 120px at 30% 50%, rgba(165,105,255,0.1) 0%, transparent 70%);
+      --topbar-sep:   rgba(165,105,255,0.45);
+      --topbar-label: rgba(165,105,255,0.55);
+      --hero-h1:      var(--eh-purple);
+      --hero-eyebrow: var(--eh-purple);
+      --hero-substrong: var(--eh-purple);
+      --body-glow: radial-gradient(ellipse 900px 600px at 20% 10%, rgba(118,34,215,0.06) 0%, transparent 65%),
+                   radial-gradient(ellipse 600px 400px at 80% 90%, rgba(118,34,215,0.04) 0%, transparent 60%);
+      --banner-bg:    linear-gradient(135deg, #001a18 0%, #003d38 50%, #00211e 100%);
+      --banner-border:rgba(0,181,165,0.5);
+      --banner-name:  var(--eh-lime);
+      --banner-text:  rgba(253,251,255,0.75);
+      --banner-badge-bg: rgba(186,252,88,0.15);
+      --banner-badge-border: rgba(186,252,88,0.4);
+      --banner-badge-color: var(--eh-lime);
+      --banner-dot:   var(--eh-lime);
+      --native-bg:    rgba(0,107,97,0.07);
+      --native-border:rgba(0,122,110,0.3);
+      --native-color: #007a6e;
+      --section-hdr:  var(--eh-purple);
+      --eh-head-bg:   linear-gradient(135deg, #1a0035, #460078);
+      --sc-head-bg:   linear-gradient(135deg, #003d38, #007a6e);
+      --eh-lbl-bg:    rgba(118,34,215,0.08);
+      --eh-lbl-color: #6010b0;
+      --eh-lbl-border:rgba(118,34,215,0.2);
+      --sc-lbl-bg:    rgba(0,122,110,0.08);
+      --sc-lbl-color: #007a6e;
+      --sc-lbl-border:rgba(0,122,110,0.2);
+      --flow-item-color: rgba(24,16,58,0.75);
+      --flow-item-bullet: #a569ff;
+      --flow-item-bullet-sc: #007a6e;
+      --flow-divider: rgba(118,34,215,0.1);
+      --callout-bg:    rgba(118,34,215,0.05);
+      --callout-border:rgba(118,34,215,0.2);
+      --callout-color: #5a10b0;
+      --callout-sc-bg: rgba(0,122,110,0.05);
+      --callout-sc-border: rgba(0,122,110,0.2);
+      --callout-sc-color: #007a6e;
+      --via-bg:       rgba(0,122,110,0.1);
+      --via-border:   rgba(0,122,110,0.35);
+      --via-color:    #007a6e;
+      --arrow-divider:rgba(118,34,215,0.1);
+      --arrow-lbl:    rgba(24,16,58,0.4);
+      --arrow-r-color:#7622d7;
+      --arrow-l-color:#007a6e;
+      --bidir-label:  rgba(24,16,58,0.4);
+      --bidir-pill-bg:rgba(0,122,110,0.08);
+      --bidir-pill-border:rgba(0,122,110,0.2);
+      --bidir-pill-color:#007a6e;
+      --arc-color:    #007a6e;
+      --th-color:     rgba(24,16,58,0.4);
+      --td-row-hover: rgba(118,34,215,0.03);
+      --td-divider:   rgba(118,34,215,0.06);
+      --td-first:     #18103a;
+      --boundary-color:rgba(24,16,58,0.35);
+      --badge-sc-bg:  rgba(0,122,110,0.08);
+      --badge-sc-color:#007a6e;
+      --badge-sc-border:rgba(0,122,110,0.2);
+      --badge-eh-bg:   rgba(118,34,215,0.08);
+      --badge-eh-color:#6010b0;
+      --badge-eh-border:rgba(118,34,215,0.2);
+      --badge-bi-bg:   rgba(118,34,215,0.08);
+      --badge-bi-color:var(--eh-purple);
+      --badge-bi-border:rgba(118,34,215,0.2);
+      --badge-bnd-bg:  rgba(0,0,0,0.04);
+      --badge-bnd-color:rgba(24,16,58,0.4);
+      --badge-bnd-border:rgba(0,0,0,0.12);
+      --pill-native-bg:    rgba(0,122,110,0.08);
+      --pill-native-color: #007a6e;
+      --pill-native-border:rgba(0,122,110,0.2);
+      --pill-native-dot:   #007a6e;
+      --note-title:   #18103a;
+      --btn-show-bg:   var(--eh-purple);
+      --btn-show-color:#ffffff;
+      --btn-show-shadow:rgba(118,34,215,0.3);
+      --btn-show-hover:#5c0fbf;
+      --btn-reset-border:rgba(118,34,215,0.25);
+      --btn-reset-color:var(--muted);
+      --card-selected-eh-bg: linear-gradient(145deg, rgba(118,34,215,0.08), rgba(118,34,215,0.04));
+      --card-selected-eh-shadow: 0 0 0 2px #7622d7, 0 8px 24px rgba(118,34,215,0.15);
+      --card-selected-sc-bg: linear-gradient(145deg, rgba(0,122,110,0.1), rgba(0,122,110,0.05));
+      --card-selected-sc-shadow: 0 0 0 2px #00b5a5, 0 8px 24px rgba(0,122,110,0.2);
+      --p-name-color:  #18103a;
+      --locked-badge-color: rgba(24,16,58,0.4);
+      --locked-badge-bg:    rgba(0,0,0,0.04);
+      --locked-badge-border:rgba(0,0,0,0.1);
+      --p-icon-eh-bg:   rgba(118,34,215,0.1);
+      --p-icon-eh-border:rgba(118,34,215,0.2);
+      --p-icon-sc-bg:  rgba(0,122,110,0.1);
+      --p-icon-sc-border:rgba(0,122,110,0.2);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 0 80px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background: var(--body-glow);
+      transition: background 0.3s ease;
+    }
+
+    .topbar {
+      width: 100%;
+      background: var(--topbar-bg);
+      border-bottom: 1px solid var(--topbar-border);
+      padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+      position: relative; z-index: 10; overflow: hidden;
+    }
+    .topbar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--topbar-glow); pointer-events: none;
+    }
+    .topbar-logos { display: flex; align-items: center; gap: 28px; position: relative; z-index: 1; }
+    .topbar-logo-eh  { height: 220px; width: auto; display: block; }
+    .topbar-logo-sc  { height: 44px;  width: auto; display: block; }
+    .topbar-sep {
+      color: var(--topbar-sep); font-size: 26px; font-weight: 200;
+      line-height: 1; font-family: 'Lexend', sans-serif;
+    }
+    .topbar-right { display: flex; align-items: center; gap: 16px; position: relative; z-index: 1; }
+    .topbar-label {
+      font-family: 'Lexend', sans-serif; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--topbar-label);
+    }
+    .theme-toggle {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px; padding: 5px 6px; cursor: pointer;
+      transition: background 0.2s; position: relative; z-index: 1;
+    }
+    .theme-toggle:hover { background: rgba(255,255,255,0.14); }
+    .theme-toggle-icon {
+      font-size: 14px; line-height: 1;
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .theme-toggle-icon.active { background: rgba(255,255,255,0.18); transform: scale(1.1); }
+
+    .hero {
+      text-align: center; padding: 60px 24px 48px;
+      position: relative; z-index: 1; width: 100%;
+    }
+    .hero-eyebrow {
+      font-family: 'Lexend', sans-serif; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--hero-eyebrow); margin-bottom: 14px; transition: color 0.3s;
+    }
+    .hero h1 {
+      font-family: 'Lexend', sans-serif; font-weight: 800;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.06; letter-spacing: -0.03em;
+      color: var(--text); margin-bottom: 16px;
+      text-transform: uppercase; transition: color 0.3s;
+    }
+    .hero h1 em { font-style: normal; color: var(--hero-h1); transition: color 0.3s; }
+    .hero-sub { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.65; }
+    .hero-sub strong { color: var(--hero-substrong); font-weight: 600; transition: color 0.3s; }
+
+    .main-wrap { width: 100%; max-width: 1000px; padding: 0 24px; position: relative; z-index: 1; }
+    .step-row { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+    .step-num {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--surface2); border: 1.5px solid var(--border2);
+      color: var(--eh-purple); font-size: 13px; font-weight: 700;
+      font-family: 'Lexend', sans-serif;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .step-num.active { background: var(--eh-purple); border-color: var(--eh-purple); color: #fff; }
+    .step-title {
+      font-family: 'Lexend', sans-serif; font-size: 13px; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;
+    }
+
+    .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+    .platform-card {
+      border: 1.5px solid var(--border); border-radius: 16px; padding: 22px 20px;
+      cursor: pointer; background: var(--surface);
+      transition: all 0.2s ease; position: relative; overflow: hidden; user-select: none;
+    }
+    .platform-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .platform-card.eh-card::before { background: linear-gradient(90deg, #460078, #a569ff); }
+    .platform-card.sc-card::before { background: linear-gradient(90deg, #007a6e, #00d4c1); }
+    .platform-card:hover:not(.locked) {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(118,34,215,0.2); border-color: rgba(118,34,215,0.4);
+    }
+    .platform-card.sc-card:hover:not(.locked) {
+      box-shadow: 0 8px 32px rgba(0,181,165,0.2); border-color: rgba(0,181,165,0.4);
+    }
+    .platform-card:hover:not(.locked)::before { opacity: 1; }
+    .platform-card.selected.eh-card { border-color: var(--eh-purple); background: var(--card-selected-eh-bg); box-shadow: var(--card-selected-eh-shadow); }
+    .platform-card.selected.sc-card  { border-color: var(--sc-mid);    background: var(--card-selected-sc-bg);  box-shadow: var(--card-selected-sc-shadow); }
+    .platform-card.selected::before { opacity: 1; }
+    .platform-card.locked { cursor: default; }
+    .platform-card.locked:not(.selected) { opacity: 0.4; }
+    .platform-card.locked:hover:not(.selected) { transform: none; box-shadow: none; border-color: var(--border); }
+    .p-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px; margin-bottom: 14px;
+    }
+    .p-icon.eh { background: var(--p-icon-eh-bg); border: 1px solid var(--p-icon-eh-border); }
+    .p-icon.sc { background: var(--p-icon-sc-bg); border: 1px solid var(--p-icon-sc-border); }
+    .p-name { font-family: 'Lexend', sans-serif; font-weight: 700; font-size: 14.5px; color: var(--p-name-color); margin-bottom: 5px; line-height: 1.3; transition: color 0.3s; }
+    .p-desc { font-size: 13px; color: var(--muted); line-height: 1.45; }
+    .p-check {
+      position: absolute; top: 16px; right: 16px; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--eh-lime); display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.5); transition: all 0.2s;
+    }
+    .platform-card.sc-card .p-check { background: #00d4c1; }
+    .platform-card.selected .p-check { opacity: 1; transform: scale(1); }
+    .p-check::after { content: '✓'; color: #121214; font-size: 11px; font-weight: 800; }
+    .locked-badge {
+      display: inline-flex; align-items: center; gap: 4px; margin-top: 10px;
+      font-size: 11px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.06em;
+      color: var(--locked-badge-color); background: var(--locked-badge-bg);
+      border: 1px solid var(--locked-badge-border); padding: 3px 8px; border-radius: 4px;
+    }
+    .native-badge-inline {
+      display: inline-flex; align-items: center; gap: 5px; margin-top: 10px;
+      font-size: 11px; font-family: 'Lexend', monospace; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--pill-native-color); background: var(--pill-native-bg);
+      border: 1px solid var(--pill-native-border); padding: 4px 10px; border-radius: 4px;
+    }
+    .native-badge-inline::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--pill-native-dot); animation: pulse 2s ease-in-out infinite; flex-shrink: 0; }
+
+    .btn-show-integration {
+      padding: 15px 48px; border-radius: 6px; border: none;
+      background: var(--btn-show-bg); color: var(--btn-show-color);
+      font-family: 'Lexend', sans-serif; font-size: 14px; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 4px 24px var(--btn-show-shadow);
+    }
+    .btn-show-integration:hover { background: var(--btn-show-hover); transform: translateY(-2px); box-shadow: 0 8px 32px var(--btn-show-shadow); }
+
+    #result-panel { display: none; }
+    #result-panel.visible { display: block; animation: fadeUp 0.4s ease both; }
+
+    @keyframes fadeUp  { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes pulse   { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.4;transform:scale(.7);} }
+    @keyframes flowR   { 0%{background-position:-100% 0} 100%{background-position:100% 0} }
+    @keyframes flowL   { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
+
+    .section-hdr {
+      font-family: 'Lexend', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--section-hdr); margin-bottom: 14px; transition: color 0.3s;
+    }
+
+    .partner-hero {
+      border-radius: 14px; padding: 22px 28px; margin-bottom: 18px;
+      display: flex; align-items: center; gap: 20px;
+      position: relative; overflow: hidden;
+      background: var(--banner-bg); border: 1px solid var(--banner-border);
+    }
+    .partner-hero::before {
+      content: ''; position: absolute; top: -40px; right: -40px;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,193,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .partner-icon-wrap {
+      width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(0,212,193,0.12); border: 1px solid rgba(0,212,193,0.3);
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+      position: relative; z-index: 1;
+    }
+    .partner-info { flex: 1; position: relative; z-index: 1; }
+    .partner-type {
+      font-family: 'Lexend', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--banner-name); margin-bottom: 3px;
+    }
+    .partner-name {
+      font-family: 'Lexend', sans-serif; font-size: 26px; font-weight: 800;
+      color: #fdfbff; letter-spacing: -0.02em;
+      text-transform: uppercase; line-height: 1; margin-bottom: 4px;
+    }
+    .partner-tagline { font-size: 14px; color: var(--banner-text); line-height: 1.55; max-width: 620px; }
+    .partner-badge {
+      display: inline-flex; align-items: center; gap: 7px; margin-top: 10px;
+      padding: 6px 14px; border-radius: 5px; font-size: 12px; font-weight: 700;
+      font-family: 'Lexend', sans-serif; letter-spacing: 0.07em; text-transform: uppercase;
+      background: var(--banner-badge-bg); border: 1px solid var(--banner-badge-border);
+      color: var(--banner-badge-color);
+    }
+    .partner-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--banner-dot); animation: pulse 2s ease-in-out infinite; }
+
+    .type-banner {
+      display: flex; align-items: center; gap: 13px; padding: 13px 18px;
+      border-radius: 10px; margin-bottom: 24px; font-size: 14px; font-weight: 600;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .type-banner.native { background: var(--native-bg); border: 1.5px solid var(--native-border); color: var(--native-color); }
+    .type-banner-icon { font-size: 20px; }
+    .type-banner-text { flex: 1; }
+    .type-banner-text strong { display: block; margin-bottom: 2px; font-family: 'Lexend', sans-serif; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .type-banner-text span { font-weight: 400; font-size: 13px; opacity: 0.8; color: var(--muted); }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 700;
+      padding: 4px 10px; border-radius: 4px; font-family: 'Lexend', sans-serif;
+      letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.3s;
+    }
+    .status-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; }
+    .status-pill.native { background: var(--pill-native-bg); color: var(--pill-native-color); border: 1px solid var(--pill-native-border); }
+    .status-pill.native::before { background: var(--pill-native-dot); }
+
+    .flow-diagram {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; margin-bottom: 24px; box-shadow: var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .flow-diagram-hdr {
+      padding: 12px 20px; background: var(--surface3); border-bottom: 1px solid var(--border);
+      font-family: 'Lexend', sans-serif; font-size: 11px; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .flow-body { padding: 20px 16px; display: grid; align-items: stretch; }
+    .flow-body.two-col   { grid-template-columns: 1fr 108px 1fr; }
+    .flow-body.three-col { grid-template-columns: 1fr 80px 1fr 80px 1fr; }
+
+    .flow-col { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); transition: border-color 0.3s; }
+    .flow-col-head { padding: 12px 14px; }
+    .flow-col-head-title { font-family: 'Lexend', sans-serif; font-size: 13px; font-weight: 700; color: #fff; }
+    .flow-col-head-sub { font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    .eh-head { background: var(--eh-head-bg); }
+    .sc-head { background: var(--sc-head-bg); }
+    .flow-col-body { padding: 13px 12px; display: flex; flex-direction: column; gap: 11px; }
+    .flow-sec-label {
+      font-family: 'Lexend', sans-serif; font-size: 9.5px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 7px;
+      border-radius: 3px; display: inline-block; margin-bottom: 6px; transition: all 0.3s;
+    }
+    .eh-lbl  { background: var(--eh-lbl-bg);  color: var(--eh-lbl-color);  border: 1px solid var(--eh-lbl-border); }
+    .sc-lbl  { background: var(--sc-lbl-bg);  color: var(--sc-lbl-color);  border: 1px solid var(--sc-lbl-border); }
+    .flow-items { display: flex; flex-direction: column; gap: 5px; }
+    .flow-item { display: flex; align-items: flex-start; gap: 7px; font-size: 12.5px; color: var(--flow-item-color); line-height: 1.4; transition: color 0.3s; }
+    .flow-item::before { content: '–'; font-size: 11px; margin-top: 2px; flex-shrink: 0; color: var(--flow-item-bullet); }
+    .flow-col.sc-fcol .flow-item::before { color: var(--flow-item-bullet-sc); }
+    .flow-divider { height: 1px; background: var(--flow-divider); }
+    .flow-callout {
+      padding: 9px 11px; border-radius: 7px; font-size: 12px; line-height: 1.55;
+      color: var(--callout-color); background: var(--callout-bg); border: 1px solid var(--callout-border);
+      transition: all 0.3s;
+    }
+    .flow-callout.sc { color: var(--callout-sc-color); background: var(--callout-sc-bg); border-color: var(--callout-sc-border); }
+    .flow-callout-icon { margin-bottom: 3px; display: block; }
+
+    .flow-connector { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; gap: 0; }
+    .flow-via {
+      font-family: 'Lexend', sans-serif; font-size: 9.5px; font-weight: 700;
+      letter-spacing: 0.08em; text-align: center; padding: 6px 10px;
+      border-radius: 20px; margin: 4px 0; white-space: nowrap;
+      background: var(--via-bg); border: 1px solid var(--via-border); color: var(--via-color);
+      text-transform: uppercase; transition: all 0.3s;
+    }
+    .arrow-row {
+      width: 100%; display: flex; flex-direction: column; align-items: center;
+      gap: 3px; padding: 6px 0; border-top: 1px solid var(--arrow-divider);
+    }
+    .arrow-row:first-child { border-top: none; }
+    .arrow-lbl { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; text-align: center; color: var(--arrow-lbl); line-height: 1.3; }
+    .arrow-track { width: 100%; height: 14px; position: relative; display: flex; align-items: center; }
+    .arrow-line { position: absolute; left: 4px; right: 4px; top: 50%; transform: translateY(-50%); height: 1.5px; border-radius: 2px; }
+    .arrow-line.to-right { background: linear-gradient(90deg, transparent, var(--arrow-r-color), transparent); background-size: 200% 100%; animation: flowR 1.8s linear infinite; }
+    .arrow-line.to-left  { background: linear-gradient(270deg, transparent, var(--arrow-l-color), transparent); background-size: 200% 100%; animation: flowL 1.8s linear infinite; }
+    .arrowhead-r { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:7px solid var(--arrow-r-color); }
+    .arrowhead-l { position: absolute; left:  0; top: 50%; transform: translateY(-50%); width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-right:7px solid var(--arrow-l-color); }
+
+    .bidir-wrap {
+      background: var(--surface); border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      border-radius: 0 0 14px 14px; transition: background 0.3s, border-color 0.3s;
+    }
+    .bidir-inner { padding: 12px 18px 20px; display: flex; flex-direction: column; align-items: center; }
+    .bidir-label {
+      font-family: 'Lexend', sans-serif; font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.12em; color: var(--bidir-label); text-transform: uppercase;
+      margin-bottom: 8px; text-align: center; transition: color 0.3s;
+    }
+    .bidir-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 6px; }
+    .bidir-pill {
+      font-size: 12.5px; color: var(--bidir-pill-color); padding: 4px 12px; border-radius: 4px;
+      background: var(--bidir-pill-bg); border: 1px solid var(--bidir-pill-border); transition: all 0.3s;
+    }
+
+    .data-table {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; margin-bottom: 24px; box-shadow: var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .data-table-hdr {
+      padding: 12px 20px; background: var(--surface3); border-bottom: 1px solid var(--border);
+      font-family: 'Lexend', sans-serif; font-size: 11px; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .data-table table { width: 100%; border-collapse: collapse; }
+    .data-table th {
+      padding: 10px 16px; font-family: 'Lexend', sans-serif; font-size: 11px; font-weight: 700;
+      color: var(--th-color); text-transform: uppercase; letter-spacing: 0.12em;
+      border-bottom: 1px solid var(--border); text-align: left; transition: color 0.3s;
+    }
+    .data-table td {
+      padding: 11px 16px; font-size: 13.5px;
+      border-bottom: 1px solid var(--td-divider); vertical-align: middle; color: var(--muted); transition: all 0.3s;
+    }
+    .data-table td:first-child { color: var(--td-first); font-weight: 600; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--td-row-hover); }
+    .dir-badge {
+      display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 700;
+      padding: 3px 9px; border-radius: 4px; font-family: 'Lexend', sans-serif;
+      letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; transition: all 0.3s;
+    }
+    .dir-badge.to-sc     { background: var(--badge-sc-bg);  color: var(--badge-sc-color);  border: 1px solid var(--badge-sc-border); }
+    .dir-badge.to-eh     { background: var(--badge-eh-bg);  color: var(--badge-eh-color);  border: 1px solid var(--badge-eh-border); }
+    .dir-badge.bidir     { background: var(--badge-bi-bg);  color: var(--badge-bi-color);  border: 1px solid var(--badge-bi-border); }
+    .dir-badge.boundary  { background: var(--badge-bnd-bg); color: var(--badge-bnd-color); border: 1px solid var(--badge-bnd-border); }
+
+    .notes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+    .note-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px; box-shadow: var(--shadow);
+      transition: all 0.2s;
+    }
+    .note-card:hover { border-color: rgba(0,181,165,0.35); }
+    .note-card-icon { font-size: 22px; margin-bottom: 9px; display: block; }
+    .note-card-title {
+      font-family: 'Lexend', sans-serif; font-size: 13px; font-weight: 700;
+      color: var(--note-title); margin-bottom: 6px; letter-spacing: 0.02em;
+      text-transform: uppercase; transition: color 0.3s;
+    }
+    .note-card-body { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+    /* Dimension Mapping Section */
+    --dim-bg:     rgba(186,252,88,0.06);
+    --dim-border: rgba(186,252,88,0.25);
+    --dim-color:  var(--eh-lime);
+    --dim-lbl-bg: rgba(186,252,88,0.12);
+    --dim-lbl-border: rgba(186,252,88,0.3);
+    --dim-lbl-color: var(--eh-lime);
+    --dim-pill-bg: rgba(186,252,88,0.1);
+    --dim-pill-border: rgba(186,252,88,0.3);
+    --dim-pill-color: var(--eh-lime);
+
+    .dim-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; margin-bottom: 24px;
+      box-shadow: var(--shadow); transition: background 0.3s, border-color 0.3s;
+    }
+    .dim-section-hdr {
+      padding: 12px 20px; background: var(--surface3); border-bottom: 1px solid var(--border);
+      font-family: 'Lexend', sans-serif; font-size: 11px; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .dim-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 16px; }
+    .dim-intro {
+      font-size: 13.5px; color: var(--text2); line-height: 1.65;
+      padding: 11px 14px; border-radius: 9px;
+      background: rgba(186,252,88,0.05); border: 1px solid rgba(186,252,88,0.18);
+      transition: all 0.3s;
+    }
+    .dim-intro strong { color: var(--eh-lime); font-weight: 600; }
+    [data-theme="light"] .dim-intro { background: rgba(118,34,215,0.04); border-color: rgba(118,34,215,0.15); }
+    [data-theme="light"] .dim-intro strong { color: var(--eh-purple); }
+    .dim-flow {
+      display: grid; grid-template-columns: 1fr 60px 1fr; align-items: center; gap: 0;
+    }
+    .dim-source, .dim-dest {
+      border-radius: 10px; overflow: hidden; border: 1px solid var(--border);
+    }
+    .dim-source-head { background: var(--sc-head-bg); padding: 10px 13px; }
+    .dim-dest-head   { background: var(--eh-head-bg); padding: 10px 13px; }
+    .dim-col-title { font-family: 'Lexend', sans-serif; font-size: 12px; font-weight: 700; color: #fff; }
+    .dim-col-sub   { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    .dim-col-body  { padding: 12px 12px; display: flex; flex-direction: column; gap: 8px; }
+    .dim-card {
+      border-radius: 7px; border: 1px solid; padding: 9px 11px;
+      transition: all 0.3s;
+    }
+    .dim-card.sc {
+      background: rgba(0,181,165,0.08); border-color: rgba(0,181,165,0.25);
+    }
+    .dim-card.eh {
+      background: rgba(186,252,88,0.06); border-color: rgba(186,252,88,0.22);
+    }
+    [data-theme="light"] .dim-card.eh {
+      background: rgba(118,34,215,0.06); border-color: rgba(118,34,215,0.18);
+    }
+    .dim-card-name {
+      font-family: 'Lexend', sans-serif; font-size: 11.5px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 4px; transition: color 0.3s;
+    }
+    .dim-card.sc .dim-card-name { color: #00d4c1; }
+    [data-theme="light"] .dim-card.sc .dim-card-name { color: #007a6e; }
+    .dim-card.eh .dim-card-name { color: var(--eh-lime); }
+    [data-theme="light"] .dim-card.eh .dim-card-name { color: var(--eh-purple); }
+    .dim-card-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+    .dim-connector {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 6px; padding: 0 4px;
+    }
+    .dim-arrow-lbl {
+      font-family: 'JetBrains Mono', monospace; font-size: 8px;
+      color: var(--arrow-lbl); text-align: center; line-height: 1.3;
+    }
+    .dim-arrow-track {
+      width: 100%; height: 14px; position: relative; display: flex; align-items: center;
+    }
+    .dim-profitability {
+      border-radius: 10px; padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(186,252,88,0.08) 0%, rgba(118,34,215,0.08) 100%);
+      border: 1px solid rgba(186,252,88,0.2);
+      transition: all 0.3s;
+    }
+    [data-theme="light"] .dim-profitability {
+      background: linear-gradient(135deg, rgba(118,34,215,0.05) 0%, rgba(0,122,110,0.05) 100%);
+      border-color: rgba(118,34,215,0.2);
+    }
+    .dim-profitability-title {
+      font-family: 'Lexend', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--eh-lime); margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+    [data-theme="light"] .dim-profitability-title { color: var(--eh-purple); }
+    .dim-profitability-body { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 10px; }
+    .dim-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .dim-pill {
+      font-family: 'Lexend', sans-serif; font-size: 11.5px; font-weight: 700;
+      padding: 4px 11px; border-radius: 4px; letter-spacing: 0.05em;
+      background: rgba(186,252,88,0.1); color: var(--eh-lime);
+      border: 1px solid rgba(186,252,88,0.3); transition: all 0.3s;
+    }
+    [data-theme="light"] .dim-pill {
+      background: rgba(118,34,215,0.08); color: var(--eh-purple);
+      border-color: rgba(118,34,215,0.2);
+    }
+    .dim-example {
+      font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.6;
+    }
+    .dim-example strong { color: var(--text2); font-weight: 600; }
+    @media (max-width: 660px) {
+      .dim-flow { grid-template-columns: 1fr; }
+      .dim-connector { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 8px 0; }
+    }
+
+    .reset-row { text-align: center; margin-top: 8px; }
+    .btn-reset {
+      padding: 11px 28px; border-radius: 6px;
+      border: 1.5px solid var(--btn-reset-border); background: transparent;
+      font-family: 'Lexend', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--btn-reset-color); cursor: pointer; transition: all 0.2s;
+    }
+    .btn-reset:hover { border-color: var(--sc); color: var(--sc); background: rgba(0,181,165,0.06); }
+
+
+    .tier-block {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px; margin-bottom: 24px;
+      box-shadow: var(--shadow); transition: background 0.3s, border-color 0.3s;
+    }
+    .tier-block-hdr {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .tier-block-icon {
+      width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+      background: var(--eh-lbl-bg); border: 1px solid var(--eh-lbl-border);
+    }
+    .tier-block-title {
+      font-family: 'Lexend', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+    }
+    .tier-group { margin-bottom: 12px; }
+    .tier-group:last-child { margin-bottom: 0; }
+    .tier-group-label {
+      font-family: 'Lexend', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+      margin-bottom: 7px;
+    }
+    .tier-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tier-pill {
+      font-family: 'Lexend', sans-serif; font-size: 12px; font-weight: 700;
+      padding: 5px 13px; border-radius: 5px; letter-spacing: 0.04em;
+      background: var(--eh-lbl-bg); color: var(--eh-lbl-color); border: 1px solid var(--eh-lbl-border);
+      transition: all 0.3s;
+    }
+    .tier-pill.payroll {
+      background: var(--sc-lbl-bg); color: var(--sc-lbl-color); border-color: var(--sc-lbl-border);
+    }
+    @media (max-width: 660px) {
+      .topbar { padding: 0 20px; }
+      .topbar-logo-eh { height: 140px; }
+      .topbar-label { display: none; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .flow-body.two-col, .flow-body.three-col { grid-template-columns: 1fr; }
+      .flow-connector { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 10px 0; }
+      .notes-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-logos">
+      <!-- EH Logo -->
+      <svg class="topbar-logo-eh" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#fdfbff" d="M108.11,259.66c3.71,0,6.15-1.79,7.42-3.79.16-.25.51-.28.7-.06l3.03,3.34c.15.16.16.42.02.58-2.19,2.58-5.95,4.66-11.36,4.66-8.24,0-12.44-5.48-12.44-12.58s4.72-12.68,12.4-12.68,11.33,4.8,11.28,13.64c0,.24-.2.44-.45.44h-16.96c-.28,0-.49.25-.44.53.67,3.91,3.35,5.93,6.8,5.93h0ZM101.94,249.36h10.94c.28,0,.48-.25.44-.52-.51-3.22-2.52-5-5.45-5-2.75,0-5.41,1.59-6.36,4.95-.08.28.13.57.43.57ZM155.17,250.53c0-4.4-1.73-6.5-5.15-6.5s-5.48,2.43-5.48,6.83v12.47c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-12.38c0-4.86-1.4-6.93-4.91-6.93-4.12,0-5.71,3.74-5.71,7.72v11.58c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-23.16c0-.25.2-.44.44-.44h4.32c.27,0,.48.24.44.51l-.49,3.31c-.07.49.59.72.83.29,1.49-2.69,3.89-4.71,7.69-4.71,3.06,0,5.96,1.43,7.42,4.79.15.34.62.35.8.03,1.51-2.72,3.97-4.82,7.69-4.82,4.91,0,8.65,3.41,8.65,10.67v13.54c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-12.8h0ZM180.05,264.38c-3.51,0-6.06-1.4-7.67-3.58-.25-.34-.8-.16-.8.27v11.38c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-32.28c0-.25.2-.44.44-.44h4.28c.27,0,.48.24.44.51l-.42,3.04c-.07.48.57.71.82.3,1.56-2.6,4.29-4.45,8.42-4.45,5.94,0,10.67,4.4,10.67,12.63s-4.72,12.63-10.67,12.63h0ZM171.58,251.8c0,5.38,2.81,7.86,6.69,7.86s6.6-2.43,6.6-7.86-2.67-7.91-6.6-7.91-6.69,2.48-6.69,7.91ZM194.64,229.38h4.63c.25,0,.44.2.44.44v33.5c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-33.5c0-.25.2-.44.44-.44ZM215.81,264.38c-6.92,0-12.77-4.45-12.77-12.63s5.85-12.63,12.77-12.63,12.77,4.54,12.77,12.63-5.8,12.63-12.77,12.63ZM208.89,251.75c0,5.34,3.23,7.86,6.92,7.86s6.93-2.53,6.93-7.86-3.23-7.81-6.93-7.81-6.92,2.57-6.92,7.81ZM232.74,273.36c-2.03,0-3.9-.6-5.17-1.57-.18-.14-.24-.38-.13-.57l2.04-3.74c.14-.27.51-.31.72-.09.8.83,1.82,1.3,3.01,1.3,1.68,0,3.04-1.36,4.12-4.82l.05-.05-9.75-23.48c-.12-.29.09-.62.41-.62h4.97c.19,0,.35.11.42.28l6.21,16.26c.15.38.69.38.83,0l6.12-16.25c.06-.17.23-.29.42-.29h4.78c.32,0,.53.32.41.62l-10.41,25.12c-2.43,5.89-5.14,7.91-9.03,7.91h0ZM287.17,250.53c0-4.4-1.73-6.5-5.15-6.5s-5.48,2.43-5.48,6.83v12.47c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-12.38c0-4.86-1.4-6.93-4.91-6.93-4.12,0-5.71,3.74-5.71,7.72v11.58c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-23.16c0-.25.2-.44.44-.44h4.33c.27,0,.48.24.44.51l-.49,3.31c-.07.49.59.72.83.29,1.49-2.69,3.89-4.71,7.69-4.71,3.06,0,5.96,1.43,7.42,4.79.15.34.62.35.8.03,1.51-2.72,3.97-4.82,7.69-4.82,4.91,0,8.65,3.41,8.65,10.67v13.54c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-12.8h0ZM308.3,259.66c3.71,0,6.15-1.79,7.42-3.79.16-.25.5-.28.7-.06l3.03,3.34c.15.16.16.42.01.58-2.19,2.58-5.95,4.66-11.36,4.66-8.24,0-12.44-5.48-12.44-12.58s4.73-12.68,12.4-12.68,11.33,4.8,11.28,13.64c0,.24-.2.44-.45.44h-16.96c-.28,0-.49.25-.44.53.67,3.91,3.35,5.93,6.8,5.93h0ZM302.13,249.36h10.94c.28,0,.48-.25.44-.52-.52-3.22-2.52-5-5.45-5-2.75,0-5.41,1.59-6.36,4.95-.08.28.13.57.43.57ZM340.16,250.77c0-4.96-1.87-6.79-5.57-6.79s-5.99,2.81-5.99,7.11v12.23c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-23.16c0-.25.2-.44.44-.44h4.32c.27,0,.48.24.44.51l-.51,3.54c-.07.48.58.71.82.29,1.63-2.86,4.25-4.95,8.14-4.95,5.05,0,8.98,3.32,8.98,11.04v13.17c0,.25-.2.44-.44.44h-4.68c-.25,0-.44-.2-.44-.44v-12.56h0ZM352.21,254.7l-.05-9.94c0-.25-.2-.44-.44-.44h-3.93c-.25,0-.44-.2-.44-.44v-3.69c0-.25.2-.44.44-.44h3.93c.25,0,.44-.2.44-.44v-4.67c0-.16.09-.31.23-.39l5.34-3.01h.05v8.07c0,.25.2.44.44.44h8.05c.25,0,.44.2.44.44v3.69c0,.25-.2.44-.44.44h-8.05c-.25,0-.44.2-.44.44v9.47c0,3.88,1.21,5.34,3.55,5.34,1.87,0,3.38-.93,4.41-2.19.19-.23.54-.22.71.03l2.3,3.36c.12.18.1.42-.06.57-1.45,1.44-4.25,3.05-8.11,3.05-5.2,0-8.38-3.18-8.38-9.68h0ZM394.42,250.39c0-4.63-1.83-6.46-5.15-6.46-4.91,0-6.46,3.84-6.46,7.53v11.86c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44v-33.5c0-.25.2-.44.44-.44h4.63c.25,0,.44.2.44.44v13.04c0,.43.56.62.81.26,1.63-2.4,4.07-4.01,7.47-4.01,4.68,0,8.84,3.09,8.84,11.09l.05,13.12c0,.25-.2.45-.44.45h-4.67c-.25,0-.44-.2-.44-.44v-12.94h0ZM415.58,259.66c3.71,0,6.15-1.79,7.42-3.79.16-.25.51-.28.7-.06l3.03,3.34c.15.16.16.42.02.58-2.19,2.58-5.95,4.66-11.36,4.66-8.24,0-12.44-5.48-12.44-12.58s4.73-12.68,12.4-12.68,11.33,4.8,11.28,13.64c0,.24-.2.44-.45.44h-16.96c-.28,0-.49.25-.44.53.67,3.91,3.35,5.93,6.8,5.93h0ZM409.41,249.36h10.94c.28,0,.48-.25.44-.52-.52-3.22-2.52-5-5.45-5-2.75,0-5.41,1.59-6.36,4.95-.08.28.13.57.43.57ZM430.37,263.33v-23.16c0-.25.2-.44.44-.44h4.32c.27,0,.48.24.44.51l-.39,2.48c-.08.49.59.72.83.28,1.34-2.42,3.27-3.88,5.86-3.88,1.65,0,3.26.49,4.53,1.42.17.13.22.36.13.55l-2.1,4.4c-.13.27-.47.33-.7.14-.92-.8-2.07-1.22-3.31-1.22-2.67,0-4.54,2.24-4.54,8.42v10.5c0,.25-.2.44-.44.44h-4.63c-.25,0-.44-.2-.44-.44h0ZM458.24,264.38c-6.92,0-12.77-4.45-12.77-12.63s5.85-12.63,12.77-12.63,12.77,4.54,12.77,12.63-5.8,12.63-12.77,12.63ZM451.32,251.75c0,5.34,3.23,7.86,6.92,7.86s6.93-2.53,6.93-7.86-3.23-7.81-6.93-7.81-6.92,2.57-6.92,7.81Z"/>
+        <path fill="#fdfbff" d="M70.11,257.33c.8,0,1.55.44,1.95,1.15.38.68.37,1.49-.03,2.16l-.02.03c-2.79,4.44-7.28,7.67-12.34,8.88-1.38.33-2.35,1.58-2.35,3.05,0,1.69,1.36,3.07,3.04,3.07.24,0,.47-.03.71-.08,5.65-1.35,10.78-4.6,14.43-9.17,3.77-4.7,5.76-10.37,5.76-16.4s-1.99-11.7-5.76-16.4c-3.65-4.58-8.78-7.84-14.43-9.18-.23-.06-.47-.08-.71-.08-1.67,0-3.04,1.37-3.04,3.07,0,1.46.96,2.71,2.35,3.05,5.05,1.21,9.55,4.44,12.33,8.86l.03.06c.4.66.41,1.47.03,2.15-.4.71-1.15,1.15-1.95,1.15-.33,0-.64-.07-.95-.21-1.1-.52-2.29-.78-3.52-.78-4.4,0-8.04,3.44-8.29,7.83v.05c-.01.13-.02.23-.02.33v.2c0,.1,0,.21.02.33v.05c.25,4.39,3.9,7.84,8.29,7.84,1.23,0,2.42-.27,3.52-.78.3-.14.62-.21.95-.21"/>
+        <path fill="#fdfbff" d="M49.88,224.36c-.24,0-.47.03-.71.08-5.65,1.34-10.78,4.6-14.43,9.17-3.77,4.71-5.76,10.37-5.76,16.4s1.99,11.7,5.76,16.4c3.66,4.57,8.78,7.83,14.43,9.17.24.06.47.08.71.08,1.67,0,3.04-1.37,3.04-3.07,0-1.46-.96-2.71-2.35-3.05-5.05-1.21-9.55-4.44-12.33-8.87l-.03-.05c-.41-.68-.42-1.48-.03-2.16.4-.71,1.15-1.15,1.95-1.15.33,0,.64.07.95.21,1.1.52,2.29.78,3.52.78,4.4,0,8.04-3.44,8.29-7.83v-.05c.01-.12.02-.22.02-.33v-.2c0-.1,0-.21-.02-.33v-.05c-.25-4.39-3.9-7.84-8.29-7.84-1.23,0-2.42.27-3.52.78-.3.14-.62.21-.95.21-.8,0-1.55-.44-1.95-1.15-.38-.68-.37-1.49.03-2.16v-.02l.02-.03c2.78-4.43,7.28-7.66,12.33-8.87,1.38-.33,2.35-1.58,2.35-3.05,0-1.69-1.36-3.07-3.04-3.07"/>
+      </svg>
+      <span class="topbar-sep">×</span>
+      <img class="topbar-logo-sc" src="data:image/png;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgnf8AeGTn0S7Xln8AAAAASUVORK5CYII=" alt="ShiftCare" style="height:22px;width:auto;display:block;">
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-label">Integration Journey Decider</span>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="theme-toggle-icon" id="icon-dark">🌙</span>
+        <span class="theme-toggle-icon" id="icon-light">☀️</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Integration Guide · Employment Hero × ShiftCare</div>
+    <h1>Understand the <em>native integration</em><br>between ShiftCare &amp; Employment Hero</h1>
+    <div class="hero-sub">Select which Employment Hero platforms your customer uses, then click <strong>Show Integration Detail</strong> to explore the data flows, sync fields and setup considerations.</div>
+  </div>
+
+  <div class="main-wrap">
+    <div class="step-row">
+      <div class="step-num active">1</div>
+      <div class="step-title">Select the Employment Hero platforms in use</div>
+    </div>
+
+    <div class="platform-grid">
+      <div class="platform-card eh-card" id="card-hr" onclick="togglePlatform('hr')">
+        <div class="p-check"></div>
+        <div class="p-icon eh">👥</div>
+        <div class="p-name">Employment Hero<br>HR</div>
+        <div class="p-desc">Core HR, leave, compliance, onboarding &amp; performance</div>
+      </div>
+      <div class="platform-card eh-card" id="card-payroll" onclick="togglePlatform('payroll')">
+        <div class="p-check"></div>
+        <div class="p-icon eh">💼</div>
+        <div class="p-name">Employment Hero<br>Payroll</div>
+        <div class="p-desc">Payroll processing, STP, timesheets &amp; pay runs</div>
+      </div>
+      <div class="platform-card sc-card selected locked" id="card-shiftcare">
+        <div class="p-check"></div>
+        <div class="p-icon sc">
+          🏥
+        </div>
+        <div class="p-name">ShiftCare</div>
+        <div class="p-desc">Care management, rostering, NDIS &amp; client scheduling</div>
+        <div class="locked-badge">⚓ Always connected</div>
+
+      </div>
+    </div>
+
+    <div id="show-btn-row" style="text-align:center; margin-bottom:36px; display:none;">
+      <button class="btn-show-integration" onclick="showIntegrationOptions()">Show Integration Detail →</button>
+    </div>
+
+    <div id="result-panel">
+      <div id="result-inner"></div>
+      <div class="reset-row">
+        <button class="btn-reset" onclick="resetAll()">← Start Over</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const html = document.documentElement;
+  let currentTheme = 'light';
+
+  function updateToggleIcons() {
+    document.getElementById('icon-dark').classList.toggle('active', currentTheme === 'dark');
+    document.getElementById('icon-light').classList.toggle('active', currentTheme === 'light');
+  }
+  function toggleTheme() {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', currentTheme);
+    updateToggleIcons();
+  }
+  updateToggleIcons();
+
+  const state = { hr: false, payroll: false };
+
+  function togglePlatform(id) {
+    if (document.getElementById('result-panel').classList.contains('visible')) return;
+    state[id] = !state[id];
+    document.getElementById('card-' + id).classList.toggle('selected', state[id]);
+    updateShowBtn();
+  }
+  function updateShowBtn() {
+    document.getElementById('show-btn-row').style.display = (state.hr || state.payroll) ? 'block' : 'none';
+  }
+  function showIntegrationOptions() {
+    ['hr','payroll'].forEach(id => document.getElementById('card-' + id).classList.add('locked'));
+    renderResult();
+  }
+  function resetAll() {
+    state.hr = false; state.payroll = false;
+    ['hr','payroll'].forEach(id => document.getElementById('card-' + id).classList.remove('selected','locked'));
+    document.getElementById('show-btn-row').style.display = 'none';
+    document.getElementById('result-panel').classList.remove('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const INT = {
+    hr: {
+      icon: '🏥',
+      integrationType: 'Built-in Integration',
+      name: 'Employment Hero HR × ShiftCare',
+      tagline: 'A built-in, no-code integration between Employment Hero HR and ShiftCare. Employee records, compliance certifications and leave data sync automatically — no third-party connector or IT resources required.',
+      badge: 'Built-in Integration · No Third Party Required',
+      bannerCls: 'native', bannerIcon: '⚡', bannerTitle: 'Built-in Integration',
+      bannerDesc: 'This integration is built directly into both platforms. No third-party connector, no custom development required.',
+      diagram: 'two',
+      c1: {
+        title: 'Employment Hero HR', sub: 'HR management platform', hCls: 'eh-head', cCls: '',
+        secs: [
+          { lbl: 'Employee Records', lCls: 'eh-lbl', items: ['Employee profiles & personal details', 'Employment type & start dates', 'Contracts & document storage'] },
+          { lbl: 'Compliance & Certifications', lCls: 'eh-lbl', items: ['Licences, tickets & working-with-children checks', 'Certificate expiry dates & alerts', 'Mandatory training & policy sign-offs'] },
+          { lbl: 'Leave Management', lCls: 'eh-lbl', items: ['Leave requests & approvals', 'Leave balances & entitlements', 'Leave status for scheduling visibility'] },
+          { lbl: 'Stays in EH HR', lCls: 'eh-lbl', items: ['Performance reviews & goals', 'Payroll & remuneration data', 'Org chart & reporting lines'] },
+        ],
+        callout: { cls: '', icon: '💡', txt: 'EH HR is the single source of truth for your workforce. Compliance and availability data flows to ShiftCare automatically — no manual re-entry needed.' }
+      },
+      arrows: [
+        { dir: 'r', lbl: 'Employee profile' },
+        { dir: 'r', lbl: 'Certifications' },
+        { dir: 'r', lbl: 'Approved leave' },
+
+      ],
+      aboveCount: 3,
+      vCls: 'native-via', vLbl: 'Direct Sync',
+      c2: {
+        title: 'ShiftCare', sub: 'Care management platform', hCls: 'sc-head', cCls: 'sc-fcol',
+        secs: [
+          { lbl: 'Rostering & Scheduling', lCls: 'sc-lbl', items: ['Shift creation & carer assignment', 'Availability & leave visibility', 'Certification-gated scheduling', 'NDIS plan & funding alignment'] },
+          { lbl: 'Client Care', lCls: 'sc-lbl', items: ['Client profiles & care plans', 'Progress notes & incident reports', 'Medication & daily activity records'] },
+          { lbl: 'Workforce (from EH HR)', lCls: 'sc-lbl', items: ['Employee profiles received from EH', 'Compliance status visible pre-shift', 'Leave dates visible in roster'] },
+          { lbl: 'Stays in ShiftCare', lCls: 'sc-lbl', items: ['NDIS billing & claims', 'Client invoicing', 'Care documentation & audit trail'] },
+        ],
+        callout: { cls: 'sc', icon: '🏥', txt: 'ShiftCare can enforce compliance checks before a shift is assigned — ensuring only workers with current certifications are rostered.' }
+      },
+      dp: [
+        { f: 'Employee Profile',           from: 'EH HR',     to: 'ShiftCare', dir: 'to-sc',  s: 'native' },
+        { f: 'Certifications & Licences',  from: 'EH HR',     to: 'ShiftCare', dir: 'to-sc',  s: 'native' },
+        { f: 'Leave Status',               from: 'EH HR',     to: 'ShiftCare', dir: 'to-sc',  s: 'native' },
+
+        { f: 'NDIS Billing & Client Data', from: 'ShiftCare', to: '— Stays in ShiftCare', dir: 'boundary', s: 'boundary' },
+
+      ],
+      tiers: ['HR Platinum', 'HR Elite', 'EmploymentOS Plus', 'EmploymentOS Unlimited'],
+      notes: [
+        { icon: '⚡', title: 'No Connector Fees', body: 'This integration is built directly into both platforms — there is no third-party connector to license, and no ongoing middleware cost.' },
+        { icon: '🔐', title: 'Compliance-Gated Rostering', body: 'ShiftCare can check certification currency from EH HR before scheduling a carer. Workers with expired checks are automatically flagged or excluded.' },
+        { icon: '📅', title: 'Live Leave Visibility', body: 'Leave approved in EH HR is reflected in ShiftCare\'s scheduling view in real time, reducing double-handling and roster conflicts.' },
+        { icon: '🏥', title: 'Care Data Stays in ShiftCare', body: 'Client care plans, NDIS billing, progress notes and incident reports remain in ShiftCare. There is a clear, intentional boundary between workforce and care data.' },
+      ]
+    },
+
+    payroll: {
+      icon: '💼',
+      integrationType: 'Built-in Integration',
+      name: 'Employment Hero Payroll × ShiftCare',
+      tagline: 'A built-in, no-code integration between Employment Hero Payroll and ShiftCare. Shift hours, allowances and leave flow directly into EH Payroll for accurate pay runs — no manual timesheet entry or third-party middleware.',
+      badge: 'Built-in Integration · No Third Party Required',
+      bannerCls: 'native', bannerIcon: '⚡', bannerTitle: 'Built-in Integration',
+      bannerDesc: 'This integration is built directly into both platforms. No third-party connector, no custom development required.',
+      diagram: 'two',
+      c1: {
+        title: 'Employment Hero Payroll', sub: 'Employment & payroll management platform', hCls: 'eh-head', cCls: '',
+        secs: [
+          { lbl: 'Employee Onboarding', lCls: 'eh-lbl', items: ['Employees invited & onboarded here', 'Bank, tax & super details captured', 'Employee profiles pushed to ShiftCare'] },
+          { lbl: 'Payroll Data Stored', lCls: 'eh-lbl', items: ['Pay rates & SCHADS / NDIS award rules', 'Work types, allowances & shift loadings', 'Leave balances & entitlements', 'Tax, super & STP obligations'] },
+          { lbl: 'Pay Run Processing', lCls: 'eh-lbl', items: ['Timesheets ingested from ShiftCare', 'Shift activities & leave applied', 'Pay calculated & payslips issued', 'SCHADS award auto-interpreted on import', 'ATO STP reporting & compliance'] },
+          { lbl: 'Intentional Boundaries', lCls: 'eh-lbl', items: ['No NDIS claim data received from ShiftCare', 'No post-payroll sync back to ShiftCare', 'Invoice & billing data stays in ShiftCare'] },
+        ],
+        callout: { cls: '', icon: '💡', txt: 'Payroll is the source of truth for employee entitlements, tax obligations, and pay calculations. ShiftCare feeds the hours — EH does the maths.' }
+      },
+      arrows: [
+        { dir: 'r', lbl: 'Employee profile' },
+        { dir: 'r', lbl: 'Leave applications' },
+        { dir: 'l', lbl: 'Timesheets' },
+        { dir: 'l', lbl: 'Shift activities' },
+        { dir: 'l', lbl: 'Work types' },
+        { dir: 'l', lbl: 'Dimensions' },
+      ],
+      aboveCount: 2,
+      vCls: 'native-via', vLbl: 'Direct Sync',
+      c2: {
+        title: 'ShiftCare', sub: 'Care management platform', hCls: 'sc-head', cCls: 'sc-fcol',
+        secs: [
+          { lbl: 'Rostering & Scheduling', lCls: 'sc-lbl', items: ['Participant profiles & care plans', 'Shift scheduling & rostering', 'NDIS support items configured', 'Leave & work types mapped'] },
+          { lbl: 'Time Tracking', lCls: 'sc-lbl', items: ['Support workers clock in & out via app', 'Shift notes & activities recorded', 'Timesheets flow to EH for payroll', 'NDIS claim codes stay in ShiftCare only'] },
+          { lbl: 'Workforce', lCls: 'sc-lbl', items: ['Employee profiles received from EH', 'Leave requests visible from EH', 'Compliance & credential tracking'] },
+          { lbl: 'Stays in ShiftCare', lCls: 'sc-lbl', items: ['NDIS claim codes & support categories', 'Participant invoicing & billing', 'Care notes & incident records', 'NDIS portal submissions'] },
+          { lbl: 'Dimension Mapping', lCls: 'sc-lbl', items: ['Client — map costs to individual clients', 'Shift Type — differentiate day, night, oncall etc.', 'Facility — split costs by site or service location', 'Location — geographic cost reporting'] },
+        ],
+        callout: { cls: 'sc', icon: '⚠️', txt: 'ShiftCare connects separately to your NDIS portal and accounting platform for invoicing and claim reconciliation. This data does not flow to Employment Hero.' }
+      },
+      dp: [
+        { f: 'Employee Profile',              from: 'EH Payroll', to: 'ShiftCare',            dir: 'to-sc',     s: 'native' },
+        { f: 'Leave Applications',            from: 'EH Payroll', to: 'ShiftCare',            dir: 'to-sc',     s: 'native' },
+        { f: 'Timesheets',                    from: 'ShiftCare',  to: 'EH Payroll',           dir: 'to-eh',     s: 'native' },
+        { f: 'Shift Activities',              from: 'ShiftCare',  to: 'EH Payroll',           dir: 'to-eh',     s: 'native' },
+        { f: 'Work Types',                    from: 'ShiftCare',  to: 'EH Payroll',           dir: 'to-eh',     s: 'native' },
+        { f: 'Dimensions (Client, Shift Type, Facility, Location)', from: 'ShiftCare', to: 'EH Payroll', dir: 'to-eh', s: 'native' },
+        { f: 'NDIS Claim Codes & Billing',    from: 'ShiftCare',  to: '— Stays in ShiftCare', dir: 'boundary',  s: 'boundary' },
+        { f: 'Invoice & Billing Data',        from: 'ShiftCare',  to: '— Stays in ShiftCare', dir: 'boundary',  s: 'boundary' },
+      ],
+      tiers: ['Payroll Standard', 'Payroll Premium', 'Payroll Core'],
+      notes: [
+        { icon: '⚡', title: 'Zero Manual Timesheets', body: 'ShiftCare sends completed shift hours, shift activities and work types directly to EH Payroll. No manual timesheet entry — every hour is captured from the clock-in record.' },
+        { icon: '🏆', title: 'SCHADS & NDIS-Aware Payroll', body: 'SCHADS award interpretation runs automatically on timesheet import. Work types and allowances configured in ShiftCare flow through to ensure accurate, compliant pay calculations.' },
+        { icon: '📊', title: 'Dimension Mapping for Profitability', body: 'ShiftCare passes dimensions — Client, Shift Type, Facility and Location — alongside each timesheet entry. In EH Payroll, these appear as cost dimensions, allowing the business to report on labour costs by client, site, shift type or location. This powers profitability reporting beyond standard cost centre analysis.' },
+        { icon: '⚓', title: 'Intentional Boundary', body: 'NDIS claim codes, participant billing and care notes stay within ShiftCare. There is no post-payroll sync back to ShiftCare — the boundary is intentional and keeps each platform focused on its job.' },
+        { icon: '📋', title: 'No Middleware Costs', body: 'This integration is built directly into both platforms — there are no connector fees, no middleware licenses, and no ongoing third-party costs. Customers activate it directly from within ShiftCare and Employment Hero.' },
+      ]
+    },
+
+    both: {
+      icon: '⚡',
+      integrationType: 'Built-in Integration',
+      name: 'Employment Hero HR + Payroll × ShiftCare',
+      tagline: 'A fully native, three-way integration connecting Employment Hero HR, Employment Hero Payroll and ShiftCare. HR data ensures compliant rostering; ShiftCare shift data drives accurate pay runs; HR and Payroll stay in sync bidirectionally. No third-party connectors required.',
+      badge: 'Built-in 3-Way Integration · No Third Party Required',
+      bannerCls: 'native', bannerIcon: '⚡', bannerTitle: 'Built-in 3-Way Integration',
+      bannerDesc: 'All three platforms connect directly — no third-party connectors, no middleware fees, and no custom development. Each platform owns a clear, distinct layer of the workflow.',
+      diagram: 'three',
+      cEH: {
+        title: 'Employment Hero HR', sub: 'HR management platform', hCls: 'eh-head',
+        secs: [
+          { lbl: 'Employee Records', lCls: 'eh-lbl', items: ['Employee profiles & personal details', 'Employment type & start dates', 'Contracts & onboarding documents'] },
+          { lbl: 'Compliance & Certs', lCls: 'eh-lbl', items: ['Licences, tickets & WWCC', 'Expiry dates & renewal alerts', 'Mandatory training records'] },
+          { lbl: 'Leave Management', lCls: 'eh-lbl', items: ['Leave requests & approvals', 'Leave balances & entitlements', 'Leave status for scheduling'] },
+        ],
+        callout: { cls: '', icon: '💡', txt: 'EH HR is the workforce source of truth. Compliance and availability data flows to ShiftCare; employee and leave data syncs bidirectionally with EH Payroll.' }
+      },
+      a1: [
+        { dir: 'r', lbl: 'Employee profile' },
+        { dir: 'r', lbl: 'Certifications' },
+        { dir: 'r', lbl: 'Approved leave' },
+      ],
+      v1Cls: 'native-via', v1Lbl: 'Direct Sync',
+      cSC: {
+        title: 'ShiftCare', sub: 'Care management platform', hCls: 'sc-head', cCls: 'sc-fcol',
+        secs: [
+          { lbl: 'Rostering & Scheduling', lCls: 'sc-lbl', items: ['Shift creation & carer assignment', 'Certification-gated scheduling', 'Leave visibility in roster', 'NDIS plan alignment'] },
+          { lbl: 'Time Tracking', lCls: 'sc-lbl', items: ['Clock in/out on shifts', 'Hours, breaks & travel time', 'NDIS support codes captured', 'Allowance & penalty triggers'] },
+          { lbl: 'Stays in ShiftCare', lCls: 'sc-lbl', items: ['Client care plans', 'NDIS billing & claims', 'Progress notes & incidents', 'Client invoicing'] },
+          { lbl: 'Dimension Mapping', lCls: 'sc-lbl', items: ['Client', 'Shift Type', 'Facility', 'Location'] },
+        ],
+        callout: { cls: 'sc', icon: '🏥', txt: 'ShiftCare sits in the middle — receiving workforce data from EH HR and pushing shift hours to EH Payroll. Client care data never leaves ShiftCare.' }
+      },
+      a2: [
+        { dir: 'r', lbl: 'Timesheets' },
+        { dir: 'r', lbl: 'Shift activities' },
+        { dir: 'r', lbl: 'Work types' },
+        { dir: 'r', lbl: 'Dimensions' },
+      ],
+      v2Cls: 'native-via', v2Lbl: 'Direct Sync',
+      cPAY: {
+        title: 'Employment Hero Payroll', sub: 'Payroll & workforce platform', hCls: 'eh-head',
+        secs: [
+          { lbl: 'Pay Run Processing', lCls: 'eh-lbl', items: ['Hours & allowances from ShiftCare', 'Award interpretation & penalties', 'NDIS rate alignment', 'Pay calculations & STP lodgement'] },
+          { lbl: 'Employee Data (from EH HR)', lCls: 'eh-lbl', items: ['Employee profiles & tax details', 'Leave balances & accruals', 'Banking & payment details'] },
+          { lbl: 'Stays in EH Payroll', lCls: 'eh-lbl', items: ['Pay rates & award configuration', 'ATO & super reporting', 'Payroll audit trail'] },
+          { lbl: 'Dimension Reporting', lCls: 'eh-lbl', items: ['Client dimension for profitability', 'Shift Type for shift-mix analysis', 'Facility for site cost reporting', 'Location for geographic analysis'] },
+        ],
+        callout: { cls: '', icon: '💰', txt: 'EH Payroll receives hours from ShiftCare and stays in sync with EH HR — accurate pay runs without any manual data entry.' }
+      },
+      bidirFields: ['Employee profile', 'Leave balances', 'Payslips', 'Tax & super details'],
+      dp: [
+        { f: 'Employee Profile',           from: 'EH HR',     to: 'ShiftCare',    dir: 'to-sc',  s: 'native' },
+        { f: 'Certifications & Licences',  from: 'EH HR',     to: 'ShiftCare',    dir: 'to-sc',  s: 'native' },
+        { f: 'Approved Leave',             from: 'EH HR',     to: 'ShiftCare',    dir: 'to-sc',  s: 'native' },
+        { f: 'Timesheets',                 from: 'ShiftCare', to: 'EH Payroll',   dir: 'to-eh',  s: 'native' },
+        { f: 'Shift Activities',           from: 'ShiftCare', to: 'EH Payroll',   dir: 'to-eh',  s: 'native' },
+        { f: 'Work Types',                 from: 'ShiftCare', to: 'EH Payroll',   dir: 'to-eh',  s: 'native' },
+        { f: 'Dimensions (Client, Shift Type, Facility, Location)', from: 'ShiftCare', to: 'EH Payroll', dir: 'to-eh', s: 'native' },
+        { f: 'Employee Profile & Leave',   from: 'EH HR',     to: 'EH Payroll',   dir: 'bidir',  s: 'native' },
+        { f: 'Payslips & Tax Details',     from: 'EH HR',     to: 'EH Payroll',   dir: 'bidir',  s: 'native' },
+        { f: 'Client Care & NDIS Billing', from: 'ShiftCare', to: '— Stays in ShiftCare', dir: 'boundary', s: 'boundary' },
+      ],
+      tiers: { hr: ['HR Platinum', 'HR Elite', 'EmploymentOS Plus', 'EmploymentOS Unlimited'], payroll: ['Payroll Standard', 'Payroll Premium', 'Payroll Core'] },
+      notes: [
+        { icon: '⚡', title: 'No Middleware Required', body: 'All three connections are built directly into the platforms. No third-party connectors — customers activate the integration from within Employment Hero and ShiftCare.' },
+        { icon: '🔄', title: 'EH HR ↔ EH Payroll (Bidirectional)', body: 'Employee profiles, leave balances, payslips and tax details sync bidirectionally between EH HR and EH Payroll — no double-entry, always in sync.' },
+        { icon: '🔐', title: 'Compliance-Gated Rostering', body: 'ShiftCare checks certification currency from EH HR before a shift is assigned. Workers with expired checks are automatically flagged.' },
+        { icon: '📊', title: 'Dimension Mapping for Profitability', body: 'ShiftCare passes four dimensions — Client, Shift Type, Facility and Location — with every timesheet into EH Payroll. Businesses can then report labour costs across each dimension, enabling profitability analysis by client, site, or shift pattern — far beyond standard cost centre reporting.' },
+        { icon: '🏥', title: 'Three Clear Data Layers', body: 'EH HR owns workforce & compliance. ShiftCare owns care delivery & hours. EH Payroll owns pay. Each platform does its job — the integration connects them without blurring those boundaries.' },
+      ]
+    }
+  };
+
+  function renderResult() {
+    const cfg = (state.hr && state.payroll) ? INT.both : state.hr ? INT.hr : INT.payroll;
+    document.getElementById('result-inner').innerHTML = buildResult(cfg);
+    document.getElementById('result-panel').classList.add('visible');
+    document.getElementById('show-btn-row').style.display = 'none';
+    setTimeout(() => document.getElementById('result-panel').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+
+  function arrowHTML(dir) {
+    const right = dir === 'r';
+    return `<div class="arrow-track">
+      <div class="arrow-line ${right ? 'to-right' : 'to-left'}"></div>
+      ${right ? '<div class="arrowhead-r"></div>' : '<div class="arrowhead-l"></div>'}
+    </div>`;
+  }
+
+  function renderConnector(arrows, vCls, vLbl, aboveCount) {
+    const mid = (aboveCount !== undefined) ? aboveCount : Math.ceil(arrows.length / 2);
+    return `<div class="flow-connector">
+      ${arrows.slice(0, mid).map((a, i) => `<div class="arrow-row"${i === 0 ? ' style="border-top:none"' : ''}><div class="arrow-lbl">${a.lbl}</div>${arrowHTML(a.dir)}</div>`).join('')}
+      <div class="flow-via ${vCls}">${vLbl}</div>
+      ${arrows.slice(mid).map(a => `<div class="arrow-row"><div class="arrow-lbl">${a.lbl}</div>${arrowHTML(a.dir)}</div>`).join('')}
+    </div>`;
+  }
+
+  function renderSecs(secs) {
+    return secs.map(s => `
+      <div>
+        <span class="flow-sec-label ${s.lCls}">${s.lbl}</span>
+        <div class="flow-items">${s.items.map(i => `<div class="flow-item">${i}</div>`).join('')}</div>
+      </div>
+      <div class="flow-divider"></div>
+    `).join('');
+  }
+
+  function renderCallout(c) {
+    return `<div class="flow-callout ${c.cls}"><span class="flow-callout-icon">${c.icon}</span>${c.txt}</div>`;
+  }
+
+  function dirBadge(d) {
+    if (d === 'to-sc')    return '<span class="dir-badge to-sc">→ ShiftCare</span>';
+    if (d === 'to-eh')    return '<span class="dir-badge to-eh">→ EH Payroll</span>';
+    if (d === 'bidir')    return '<span class="dir-badge bidir">↔ Bidirectional</span>';
+    if (d === 'boundary') return '<span class="dir-badge boundary">Stays in platform</span>';
+    return '';
+  }
+
+  function buildResult(cfg) {
+    let h = '';
+    const isDark = currentTheme === 'dark';
+    const arcColor = isDark ? '#bafc58' : '#007a6e';
+
+    h += `
+      <p class="section-hdr" style="margin-bottom:14px">Integration Detail</p>
+      <div class="partner-hero">
+        <div class="partner-icon-wrap">${cfg.icon}</div>
+        <div class="partner-info">
+          <div class="partner-type">${cfg.integrationType}</div>
+          <div class="partner-name">${cfg.name}</div>
+          <div class="partner-tagline">${cfg.tagline}</div>
+          <div class="partner-badge"><span class="dot"></span>${cfg.badge}</div>
+        </div>
+      </div>
+      <div class="type-banner ${cfg.bannerCls}">
+        <span class="type-banner-icon">${cfg.bannerIcon}</span>
+        <div class="type-banner-text">
+          <strong>${cfg.bannerTitle}</strong>
+          <span>${cfg.bannerDesc}</span>
+        </div>
+      </div>
+    `;
+
+    // Render eligible tiers
+    h += `<p class="section-hdr" style="margin-bottom:14px">Eligible Plans</p>`;
+    if (cfg.diagram === 'three') {
+      h += `<div class="tier-block">
+        <div class="tier-block-hdr"><div class="tier-block-icon">👥</div><div class="tier-block-title">Employment Hero HR — eligible plans</div></div>
+        <div class="tier-pills">${cfg.tiers.hr.map(t => `<span class="tier-pill">${t}</span>`).join('')}</div>
+        <div style="height:14px"></div>
+        <div class="tier-block-hdr"><div class="tier-block-icon" style="background:var(--sc-lbl-bg);border-color:var(--sc-lbl-border)">💼</div><div class="tier-block-title">Employment Hero Payroll — eligible plans</div></div>
+        <div class="tier-pills">${cfg.tiers.payroll.map(t => `<span class="tier-pill payroll">${t}</span>`).join('')}</div>
+      </div>`;
+    } else {
+      const isPayroll = cfg.name.includes('Payroll');
+      h += `<div class="tier-block">
+        <div class="tier-block-hdr">
+          <div class="tier-block-icon" style="${isPayroll ? 'background:var(--sc-lbl-bg);border-color:var(--sc-lbl-border)' : ''}">
+            ${isPayroll ? '💼' : '👥'}
+          </div>
+          <div class="tier-block-title">${isPayroll ? 'Employment Hero Payroll' : 'Employment Hero HR'} — eligible plans</div>
+        </div>
+        <div class="tier-pills">${cfg.tiers.map(t => `<span class="tier-pill${isPayroll ? ' payroll' : ''}">${t}</span>`).join('')}</div>
+      </div>`;
+    }
+
+    h += `<p class="section-hdr" style="margin-bottom:14px">Data Flow Diagram</p>`;
+
+    if (cfg.diagram === 'two') {
+      h += `<div class="flow-diagram">
+        <div class="flow-diagram-hdr">${cfg.c1.title} ↔ ${cfg.c2.title} · ${cfg.vLbl}</div>
+        <div class="flow-body two-col">
+          <div class="flow-col ${cfg.c1.cCls || ''}">
+            <div class="flow-col-head ${cfg.c1.hCls}"><div class="flow-col-head-title">${cfg.c1.title}</div><div class="flow-col-head-sub">${cfg.c1.sub}</div></div>
+            <div class="flow-col-body">${renderSecs(cfg.c1.secs)}${renderCallout(cfg.c1.callout)}</div>
+          </div>
+          ${renderConnector(cfg.arrows, cfg.vCls, cfg.vLbl, cfg.aboveCount)}
+          <div class="flow-col ${cfg.c2.cCls || ''}">
+            <div class="flow-col-head ${cfg.c2.hCls}"><div class="flow-col-head-title">${cfg.c2.title}</div><div class="flow-col-head-sub">${cfg.c2.sub}</div></div>
+            <div class="flow-col-body">${renderSecs(cfg.c2.secs)}${renderCallout(cfg.c2.callout)}</div>
+          </div>
+        </div>
+      </div>`;
+    } else {
+      h += `<div class="flow-diagram">
+        <div class="flow-diagram-hdr">${cfg.cEH.title} × ${cfg.cSC.title} × ${cfg.cPAY.title} · Direct Sync</div>
+        <div class="flow-body three-col">
+          <div class="flow-col">
+            <div class="flow-col-head ${cfg.cEH.hCls}"><div class="flow-col-head-title">${cfg.cEH.title}</div><div class="flow-col-head-sub">${cfg.cEH.sub}</div></div>
+            <div class="flow-col-body">${renderSecs(cfg.cEH.secs)}${renderCallout(cfg.cEH.callout)}</div>
+          </div>
+          ${renderConnector(cfg.a1, cfg.v1Cls, cfg.v1Lbl)}
+          <div class="flow-col sc-fcol">
+            <div class="flow-col-head ${cfg.cSC.hCls}"><div class="flow-col-head-title">${cfg.cSC.title}</div><div class="flow-col-head-sub">${cfg.cSC.sub}</div></div>
+            <div class="flow-col-body">${renderSecs(cfg.cSC.secs)}${renderCallout(cfg.cSC.callout)}</div>
+          </div>
+          ${renderConnector(cfg.a2, cfg.v2Cls, cfg.v2Lbl)}
+          <div class="flow-col">
+            <div class="flow-col-head ${cfg.cPAY.hCls}"><div class="flow-col-head-title">${cfg.cPAY.title}</div><div class="flow-col-head-sub">${cfg.cPAY.sub}</div></div>
+            <div class="flow-col-body">${renderSecs(cfg.cPAY.secs)}${renderCallout(cfg.cPAY.callout)}</div>
+          </div>
+        </div>
+        <div class="bidir-wrap">
+          <div class="bidir-inner">
+            <div class="bidir-label">↔ EH HR ↔ EH Payroll — bidirectional sync</div>
+            <svg viewBox="0 0 600 44" width="100%" style="max-width:540px;display:block;margin:0 auto" fill="none">
+              <defs>
+                <marker id="aR" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto"><path d="M0,0 L0,7 L8,3.5 z" fill="${arcColor}"/></marker>
+                <marker id="aL" markerWidth="8" markerHeight="8" refX="1" refY="3.5" orient="auto-start-reverse"><path d="M0,0 L0,7 L8,3.5 z" fill="${arcColor}"/></marker>
+                <linearGradient id="arcG" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="${arcColor}" stop-opacity="0.8"/>
+                  <stop offset="50%" stop-color="${arcColor}" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="${arcColor}" stop-opacity="0.8"/>
+                </linearGradient>
+              </defs>
+              <path d="M 55,8 C 190,44 410,44 545,8" fill="none" stroke="url(#arcG)" stroke-width="2" marker-start="url(#aL)" marker-end="url(#aR)"/>
+            </svg>
+            <div class="bidir-pills">${cfg.bidirFields.map(f => `<span class="bidir-pill">${f}</span>`).join('')}</div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // Dimension Mapping Section (only for payroll-involved integrations)
+    if (cfg.diagram === 'two' && cfg.name && cfg.name.includes('Payroll') || cfg.diagram === 'three') {
+      h += `
+      <p class="section-hdr" style="margin-bottom:14px">Dimension Mapping</p>
+      <div class="dim-section">
+        <div class="dim-section-hdr">ShiftCare → Employment Hero Payroll · Dimension Transfer</div>
+        <div class="dim-body">
+          <div class="dim-intro">
+            ShiftCare passes <strong>four dimensions</strong> alongside every timesheet entry into EH Payroll.
+            These allow the business to report on labour costs far beyond a standard cost centre —
+            enabling <strong>profitability intelligence</strong> at the client, shift, site and geographic level.
+          </div>
+          <div class="dim-flow">
+            <div class="dim-source">
+              <div class="dim-source-head"><div class="dim-col-title">ShiftCare</div><div class="dim-col-sub">Origin of dimension data</div></div>
+              <div class="dim-col-body">
+                <div class="dim-card sc"><div class="dim-card-name">Client</div><div class="dim-card-desc">The individual or household receiving care. Lets providers see the true cost of servicing each client.</div></div>
+                <div class="dim-card sc"><div class="dim-card-name">Shift Type</div><div class="dim-card-desc">Day, night, on-call, active overnight, etc. Reveals the cost profile of different shift patterns.</div></div>
+                <div class="dim-card sc"><div class="dim-card-name">Facility</div><div class="dim-card-desc">A specific site, ward or service location. Enables site-level cost and profitability reporting.</div></div>
+                <div class="dim-card sc"><div class="dim-card-name">Location</div><div class="dim-card-desc">Geographic region or suburb. Supports labour cost analysis across service territories.</div></div>
+              </div>
+            </div>
+            <div class="dim-connector">
+              <div class="dim-arrow-lbl">maps to</div>
+              <div class="dim-arrow-track">
+                <div class="arrow-line to-right"></div>
+                <div class="arrowhead-r"></div>
+              </div>
+            </div>
+            <div class="dim-dest">
+              <div class="dim-dest-head"><div class="dim-col-title">EH Payroll</div><div class="dim-col-sub">Dimensions available for reporting</div></div>
+              <div class="dim-col-body">
+                <div class="dim-card eh"><div class="dim-card-name">Cost per Client</div><div class="dim-card-desc">Report total labour cost against each funded client. Identify profitable vs loss-making clients.</div></div>
+                <div class="dim-card eh"><div class="dim-card-name">Cost by Shift Type</div><div class="dim-card-desc">Understand the wage impact of shift mix — overnight vs day, active vs passive care.</div></div>
+                <div class="dim-card eh"><div class="dim-card-name">Cost by Facility</div><div class="dim-card-desc">See which sites are efficient and which carry disproportionate labour overhead.</div></div>
+                <div class="dim-card eh"><div class="dim-card-name">Cost by Location</div><div class="dim-card-desc">Analyse wage spend across regions to inform pricing and geographic growth decisions.</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="dim-profitability">
+            <div class="dim-profitability-title">📊 Profitability Intelligence</div>
+            <div class="dim-profitability-body">
+              With dimensions flowing into EH Payroll, care businesses can slice their labour cost data in ways that standard payroll reporting doesn't support.
+              Rather than knowing only <em>how much</em> was paid, operators can see <em>who was paid, for what type of shift, at which site, in which region</em> —
+              giving them the intelligence to price services accurately, manage margin by client, and make data-driven decisions about where to grow or rationalise.
+            </div>
+            <div class="dim-pills">
+              <span class="dim-pill">Client profitability</span>
+              <span class="dim-pill">Shift-mix cost analysis</span>
+              <span class="dim-pill">Site-level cost reporting</span>
+              <span class="dim-pill">Geographic labour spend</span>
+              <span class="dim-pill">Beyond cost centre reporting</span>
+            </div>
+            <div class="dim-example"><strong>Example:</strong> A provider notices Client A's shifts are consistently overnight actives — their labour cost per funded hour is 28% above average. With dimension data, they can renegotiate the NDIS plan rate before the next review cycle.</div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    h += `<p class="section-hdr" style="margin-bottom:14px">Data Points at a Glance</p>
+    <div class="data-table">
+      <div class="data-table-hdr">Synced Fields &amp; Integration Type</div>
+      <table>
+        <thead><tr><th>Data Field</th><th>From</th><th>To</th><th>Direction</th><th>Integration Type</th></tr></thead>
+        <tbody>${cfg.dp.map(dp => `<tr>
+          <td>${dp.f}</td><td>${dp.from}</td><td>${dp.to}</td>
+          <td>${dirBadge(dp.dir)}</td>
+          <td>${dp.s === 'boundary'
+            ? `<span style="font-size:11px;color:var(--boundary-color);font-style:italic">Intentional boundary</span>`
+            : `<span class="status-pill native">Built-in</span>`
+          }</td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>`;
+
+    h += `<p class="section-hdr" style="margin-bottom:14px">Key Considerations for Sales</p>
+    <div class="notes-grid">${cfg.notes.map(n => `
+      <div class="note-card">
+        <span class="note-card-icon">${n.icon}</span>
+        <div class="note-card-title">${n.title}</div>
+        <div class="note-card-body">${n.body}</div>
+      </div>`).join('')}
+    </div>`;
+
+    return h;
+  }
+
+</script>
+</body>
+</html>
