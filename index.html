@@ -504,8 +504,8 @@
 
     .flow-connector { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; gap: 0; }
     .flow-via {
-      font-family: 'Lexend', sans-serif; font-size: 9.5px; font-weight: 700;
-      letter-spacing: 0.08em; text-align: center; padding: 6px 10px;
+      font-family: 'Lexend', sans-serif; font-size: 7.5px; font-weight: 700;
+      letter-spacing: 0.06em; text-align: center; padding: 4px 6px;
       border-radius: 20px; margin: 4px 0; white-space: nowrap;
       background: var(--via-bg); border: 1px solid var(--via-border); color: var(--via-color);
       text-transform: uppercase; transition: all 0.3s;
@@ -946,7 +946,7 @@
       },
       arrows: [
         { dir: 'r', lbl: 'Employee profile' },
-        { dir: 'r', lbl: 'Leave applications' },
+        { dir: 'r', lbl: 'Approved leave' },
         { dir: 'l', lbl: 'Timesheets' },
         { dir: 'l', lbl: 'Shift activities' },
         { dir: 'l', lbl: 'Work types' },
@@ -967,7 +967,7 @@
       },
       dp: [
         { f: 'Employee Profile',              from: 'EH Payroll', to: 'ShiftCare',            dir: 'to-sc',     s: 'native' },
-        { f: 'Leave Applications',            from: 'EH Payroll', to: 'ShiftCare',            dir: 'to-sc',     s: 'native' },
+        { f: 'Approved Leave',                from: 'EH Payroll', to: 'ShiftCare',            dir: 'to-sc',     s: 'native' },
         { f: 'Timesheets',                    from: 'ShiftCare',  to: 'EH Payroll',           dir: 'to-eh',     s: 'native' },
         { f: 'Shift Activities',              from: 'ShiftCare',  to: 'EH Payroll',           dir: 'to-eh',     s: 'native' },
         { f: 'Work Types',                    from: 'ShiftCare',  to: 'EH Payroll',           dir: 'to-eh',     s: 'native' },
